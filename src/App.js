@@ -19,7 +19,7 @@ function App() {
   const loginHandler = (e) => {
     setIsLogedIn((prev) => !prev);
     localStorage.setItem("AUTH", JSON.stringify(false));
-    localStorage.setItem("USERS", JSON.stringify(false));
+    localStorage.setItem("USERS", JSON.stringify(true));
     setUsersShow(true);
   };
 
