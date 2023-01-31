@@ -1,0 +1,9 @@
+Portals
+
+
+//children from props and we can reuse our modal component
+
+//ref для работы с реальным домом 
+
+взаимодействие ref with components: 
+        
