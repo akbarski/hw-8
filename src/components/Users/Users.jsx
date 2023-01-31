@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import ky from "ky";
+const URL = "https://jsonplaceholder.typicode.com/users";
 
 export const Users = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const users = async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      const users = await response.json();
-      setUsers(users);
+      const response = await ky
+        .get(URL, {
+          headers: {
+            "Content-type": "application/json",
+          },
+        })
+        .json();
+      setUsers(response);
     };
     return users;
   }, []);
@@ -18,7 +23,7 @@ export const Users = () => {
     <Container>
       {users.map((user) => {
         return (
-          <ListContainer>
+          <ListContainer key={user.id}>
             <Li>{user.name}</Li>
             <Li>{user.username}</Li>
             <Li>{user.email}</Li>

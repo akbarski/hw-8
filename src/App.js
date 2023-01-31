@@ -16,11 +16,11 @@ function App() {
     setIsLogedIn(!res);
     setUsersShow(!!result);
   }, []);
-  const loginHandler = (e) => {
+  const loginHandler = () => {
     setIsLogedIn((prev) => !prev);
+    setUsersShow(true);
     localStorage.setItem("AUTH", JSON.stringify(false));
     localStorage.setItem("USERS", JSON.stringify(true));
-    setUsersShow(true);
   };
 
   const logOutHandler = () => {
@@ -47,7 +47,7 @@ function App() {
         timerViewer={timerViewer}
         userViewer={userViewer}
       />
-      {isLogedIn ? <LoginForm loggedIn={loginHandler} /> : null}
+      {isLogedIn && <LoginForm loggedIn={loginHandler} />}
       {isUsersShow && <Users />}
       {isTimerShow && <Timer />}
     </div>
