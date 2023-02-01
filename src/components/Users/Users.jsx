@@ -8,14 +8,18 @@ export const Users = () => {
 
   useEffect(() => {
     const users = async () => {
-      const response = await ky
-        .get(URL, {
-          headers: {
-            "Content-type": "application/json",
-          },
-        })
-        .json();
-      setUsers(response);
+      try {
+        const response = await ky
+          .get(URL, {
+            headers: {
+              "Content-type": "application/json",
+            },
+          })
+          .json();
+        setUsers(response);
+      } catch (err) {
+        console.log(err);
+      }
     };
     return users;
   }, []);
