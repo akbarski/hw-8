@@ -9,14 +9,10 @@ export const Users = () => {
   useEffect(() => {
     const users = async () => {
       try {
-        const response = await ky
-          .get(URL, {
-            headers: {
-              "Content-type": "application/json",
-            },
-          })
-          .json();
-        setUsers(response);
+        const response = await fetch(URL);
+        const data = await response.json();
+        console.log(data);
+        setUsers(data);
       } catch (err) {
         console.log(err);
       }
